@@ -19,19 +19,6 @@
       body {
         background-color: #f5f5fa;
       }
-      .mynavbar {
-        background-color: white;
-        padding-top: 20px;
-        padding-left: 12%;
-        padding-right: 12%;
-      }
-      .navbar-brand img {
-        width: 46px;
-        height: 46px;
-      }
-      .landingImg {
-        width: 100%;
-      }
       .myContainer {
         padding-top: 50px;
         padding-left: 15%;
@@ -58,24 +45,14 @@
     </style>
   </head>
   <body>
-    <div class="mynavbar">
-      <nav
-        class="navbar navbar-expand-sm navbar-light d-flex justify-content-between"
-      >
-        <a class="navbar-brand" href="/">
-          <img src="images/logo.png" />
-          AutoGrade
-        </a>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">LOGIN</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="signup.html">SIGNUP</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <%
+      if(Boolean.TRUE.equals(session.getAttribute("isAuthorization"))){
+        String site = "/" ;
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site);
+      }
+    %>
+    <jsp:include page="navbar.jsp"></jsp:include>
     <div
       class="container-fluid myContainer d-flex justify-content-center"
       style="margin-top: 30px"
@@ -99,7 +76,7 @@
           <!-- Tab panes -->
           <div id="home" class="container tab-pane active">
             <br />
-            <form action="/action_page.php">
+            <form action="login" method="post">
               <div class="form-group">
                 <label for="email">Email address:</label>
                 <input
@@ -107,6 +84,7 @@
                   class="form-control"
                   placeholder="Enter email"
                   id="email"
+                  name = "email"
                 />
               </div>
               <div class="form-group">
@@ -116,22 +94,18 @@
                   class="form-control"
                   placeholder="Enter password"
                   id="pwd"
+                  name ='password'
                 />
               </div>
               <div class="form-group">
                 <label for="category">Category:</label>
-                <select class="form-control" id="category">
+                <select class="form-control" id="category" name="usertype">
                   <option>Professor</option>
                   <option>Student</option>
                   <option>Admin</option>
                 </select>
               </div>
-              <div class="form-group form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" /> Remember me
-                </label>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">LOGIN</button>
             </form>
           </div>
         </div>

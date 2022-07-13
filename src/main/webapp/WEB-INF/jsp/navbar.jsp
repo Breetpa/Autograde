@@ -22,13 +22,20 @@
         <img src="images/logo.png" />
         AutoGrade
       </a>
+     
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="login">LOGIN</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="signup">SIGNUP</a>
-        </li>
+      <% if(Boolean.TRUE.equals(session.getAttribute("isAuthorization"))){ %>
+          <li class="nav-item">
+            <a class="nav-link" href="logout"><%=session.getAttribute("email") %></a>
+          </li>
+      <% }else{  %>
+          <li class="nav-item">
+            <a class="nav-link" href="login">LOGIN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="signup">SIGNUP</a>
+          </li>
+      <% } %>
       </ul>
     </nav>
   </div>

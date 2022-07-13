@@ -44,6 +44,13 @@
     </style>
   </head>
   <body>
+    <%
+      if(Boolean.TRUE.equals(session.getAttribute("isAuthorization"))){
+        String site = "/" ;
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site);
+      }
+    %>
     <jsp:include page="navbar.jsp"></jsp:include>
     <div
       class="container-fluid myContainer d-flex justify-content-center"

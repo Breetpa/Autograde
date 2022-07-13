@@ -19,16 +19,7 @@
       body {
         background-color: #f5f5fa;
       }
-      .mynavbar {
-        background-color: white;
-        padding-top: 20px;
-        padding-left: 12%;
-        padding-right: 12%;
-      }
-      .navbar-brand img {
-        width: 46px;
-        height: 46px;
-      }
+     
       .landingImg {
         width: 100%;
       }
@@ -62,31 +53,21 @@
     </style>
   </head>
   <body>
-    <div class="mynavbar">
-      <nav
-        class="navbar navbar-expand-sm navbar-light d-flex justify-content-between"
-      >
-        <a class="navbar-brand" href="/">
-          <img src="images/logo.png" />
-          AutoGrade
-        </a>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">LOGIN</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="signup.html">SIGNUP</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <%
+      if(!Boolean.TRUE.equals(session.getAttribute("isAuthorization"))){
+        String site = "/login" ;
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site);
+      }
+    %>
+    <jsp:include page="navbar.jsp"></jsp:include>
     <div class="container-fluid myContainer">
       <div>
         <h5 class="pl-3">Submit Assignment</h5>
         <br />
       </div>
       <div class="card myCard">
-        <form action="/action_page.php">
+        <form action="/submitAssignment" method="post" enctype = "multipart/form-data">
           <div class="row">
             <div class="col-6">
               <div class="myCardLeft">
@@ -204,5 +185,12 @@
         </form>
       </div>
     </div>
+    <script>
+      // Add the following code if you want the name of the file appear on select
+      $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+      });
+    </script>
   </body>
 </html>

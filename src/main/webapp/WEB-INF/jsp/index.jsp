@@ -40,20 +40,20 @@
             student.
           </p>
           <br />
-          <button
+          <a
             type="button"
             class="btn btn-primary btn-md"
-            onclick="presentProblem()"
+            href="presentProblem"
           >
             Present Problem
-          </button>
-          <button
+          </a>
+          <a
             type="button"
             class="btn btn-primary btn-md"
-            onclick="submitAnswer()"
+            href="submitAssignment"
           >
             Submit Answer
-          </button>
+          </a>
         </div>
         <div class="col-sm-5">
           <img src="images/landing.jpg" class="landingImg rounded" />
